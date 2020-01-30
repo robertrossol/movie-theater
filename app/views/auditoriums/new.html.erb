@@ -1,0 +1,12 @@
+<h1>New auditorium</h1>
+<%= form_tag "/auditoriums", method: :post do %>
+  <div class="form-group">
+    Capacity: <input class="form_control" type="text" name="form_capacity">
+  </div>
+  <div class="form-group">
+    <select class="form-control" name="form_film">
+      <%= options_for_select(Film.all.collect {|f| [ f.name, f.id ] }, { include_blank: true }) %>
+    </select>
+  </div>
+  <input type ="submit" value="Create Auditorium">
+<% end %>

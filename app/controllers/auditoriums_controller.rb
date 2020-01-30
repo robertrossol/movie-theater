@@ -11,6 +11,23 @@ class AuditoriumsController < ApplicationController
     render 'show.html.erb'
   end
 
+  def new
+    @auditorium = Auditorium.new
+    render 'new.html.erb'
+  end
+
+  def create
+    @auditorium = Auditorium.new(
+      capacity: params[:form_capacity],
+      film_id: params[:form_film]
+    )
+    if @auditorium.save
+      redirect_to "/auditoriums/#{@auditorium.id}"
+    else
+      render "new.html.erb"
+    end
+  end
+
   def edit
     @auditorium = Auditorium.find_by(id: params[:id])
     render 'edit.html.erb'
@@ -27,5 +44,11 @@ class AuditoriumsController < ApplicationController
     else
       render 'edit.html.erb'
     end
+  end
+
+  def destroy
+    @auditorium = Auditorium.find_by(id: params[:id])
+    @auditorium.destroy
+    redirect_to "/auditoriums/"
   end
 end
