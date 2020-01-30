@@ -1,0 +1,12 @@
+<h1>All Films</h1>
+<% @films.each do |film| %>
+  <h2><%=film.name %></h2>
+  <h3>Showing in the following auditoriums:</h3>
+  <h3><% film.auditoriums.each do |auditorium| %>
+    <a href="/auditoriums/<%= auditorium.id %>"><%= auditorium.id %>  </a>
+  <% end %>
+  </h3>
+  <%= link_to "Remove Film", "/films/#{film.id}", method: :delete %>
+<% end %>
+
+<a href="films/new">Add a New Film</a>

@@ -1,6 +1,6 @@
 <h1>All Auditoriums</h1>
 <% @auditoriums.each do |auditorium| %>
-  <h2><a href="/auditoriums/<%= auditorium.id %>">Auditorium<%= auditorium.id %></a></h2>
+  <h2><a href="/auditoriums/<%= auditorium.id %>">Auditorium <%= auditorium.id %></a></h2>
   <h2>Capacity: <%= auditorium.capacity %></h2>
   <p>Film Showing: <%= auditorium.film_playing %></p>
   <p>Showings: <p>

@@ -1,0 +1,7 @@
+<h1>Add New Film</h1>
+<%= form_tag "/films", method: :post do %>
+<div class="form-group">
+  Name: <input class="form-control" type="text" name="form_name">
+</div>
+  <input type="submit" value="Add Film">
+<% end %>
