@@ -1,5 +1,4 @@
 class Auditorium < ApplicationRecord
-  # validates :capacity, :film_id, presence: true
   validates :capacity, numericality: { greater_than: 0 }
 
   belongs_to :film

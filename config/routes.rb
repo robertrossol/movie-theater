@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   get "/films/new" => "films#new"
   post "films" => "films#create"
   delete "films/:id" => "films#destroy"
+
+  get "/showings/new" => "showings#new"
+  post "/showings" => "showings#create"
+  delete "/showings/:id" => "showings#destroy"
 end
