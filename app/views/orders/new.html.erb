@@ -1,0 +1,36 @@
+<h1>New Order</h1>
+<%= form_tag "/orders", method: :post do %>
+  <div class="form-group">
+    First Name: <input class="form_control" type="text" name="form_first_name">
+  </div>
+  <div class="form-group">
+    Last Name: <input class="form_control" type="text" name="form_last_name">
+  </div>
+  <div class="form-group">
+    Email: <input class="form_control" type="text" name="form_email">
+  </div>
+  <div class="form-group">
+    Credit Card: <input class="form_control" type="text" name="form_cc">
+  </div>
+  <div class="form-group">
+    Expiration Date: <input class="form_control" type="text" name="form_cc_exp">
+  </div>
+  <div class="form-group">
+    <input class="form_control" type="hidden" name="form_showing", value="<%= params[:showing_id] %>">
+  </div>
+  <% showing = Showing.find_by(id: params[:showing_id]) %>
+  <p>Showing Details: <%= "#{showing.film.name} at #{showing.time.strftime("%I:%M %p")} in Auditorium #{showing.auditorium_id}"%></p>
+  <input type ="submit" value="Purchase">
+<% end %>
+
+<% if @order.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+    <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

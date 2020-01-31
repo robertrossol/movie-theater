@@ -16,4 +16,15 @@ Rails.application.routes.draw do
   get "/showings/new" => "showings#new"
   post "/showings" => "showings#create"
   delete "/showings/:id" => "showings#destroy"
+
+  get "/orders" => "orders#index"
+  get "/orders/new" => "orders#new"
+  post "/orders" => "orders#create"
+  get "showings/:showing_id/orders/new" => "orders#new"
+  # delete "/orders/:id" => "orders#destroy"
+
+  resources :showings do
+    resources :orders
+
+  end
 end

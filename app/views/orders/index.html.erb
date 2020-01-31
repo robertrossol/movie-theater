@@ -1,0 +1,11 @@
+<h1>All Orders</h1>
+<% @orders.each do |order| %>
+  <h3>Order #<%= order.id %></h3>
+  <p>Name: <%= order.first_name + " " + order.last_name %></p>
+  <p>Email: <%= order.email %></p>
+  <p>Credit Card: <%= order.cc %></p>
+  <p>Expiration Date: <%= order.cc_exp %></p>
+  <p>Showing Time: <%= order.showing_time %></p>
+  <p>Auditorium #<%= order.auditorium_id %></p>
+  <p>Film: <%= order.film_name %></p>
+<% end %>
