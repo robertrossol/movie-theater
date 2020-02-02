@@ -1,11 +1,13 @@
 class OrdersController < ApplicationController
   def index
     @orders = Order.all
+    @films = @orders.pluck(:film_name).uniq
     render 'index.html.erb'
   end
 
   def new
     @order = Order.new(showing_id: params[:id])
+    @showing = Showing.find_by(id: params[:showing_id])
     render 'new.html.erb'
   end
 

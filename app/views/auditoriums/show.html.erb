@@ -13,4 +13,5 @@
 <%= link_to "Delete Auditorium", "/auditoriums/#{@auditorium.id}", method: :delete %>
 
 <h4><a href="/showings/new">Add a Showing</a></h4>
+<h4><%= link_to "Add a Showing", new_auditorium_showing_url(:auditorium_id => @auditorium.id ) %></h4>
 <h4><a href="/auditoriums">Home Page</a></h4>

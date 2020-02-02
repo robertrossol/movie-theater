@@ -5,7 +5,8 @@ class ShowingsController < ApplicationController
   # end
 
   def new
-    @showing = Showing.new
+    @showing = Showing.new(auditorium_id: params[:id])
+    @auditorium = Auditorium.find_by(id: params[:auditorium_id]) || Auditorium.first
     render 'new.html.erb'
   end
 

@@ -1,11 +1,46 @@
 <h1>All Orders</h1>
-<% @orders.each do |order| %>
-  <h3>Order #<%= order.id %></h3>
-  <p>Name: <%= order.first_name + " " + order.last_name %></p>
-  <p>Email: <%= order.email %></p>
-  <p>Credit Card: <%= order.cc %></p>
-  <p>Expiration Date: <%= order.cc_exp %></p>
-  <p>Showing Time: <%= order.showing_time %></p>
-  <p>Auditorium #<%= order.auditorium_id %></p>
-  <p>Film: <%= order.film_name %></p>
-<% end %>
+<%# @orders.each do |order| %>
+<!--  <h3>Order #<%#= order.id %></h3>-->
+<!--  <p>Name: <%#= order.first_name + " " + order.last_name %></p>-->
+<!--  <p>Email: <%#= order.email %></p>-->
+<!--  <p>Credit Card: <%#= order.cc %></p>-->
+<!--  <p>Expiration Date: <%#= order.cc_exp %></p>-->
+<!--  <p>Showing Time: <%#= order.showing_time %></p>-->
+<!--  <p>Auditorium #<%#= order.auditorium_id %></p>-->
+<!--  <p>Film: <%#= order.film_name %></p>-->
+<%# end %>
+
+<select class="form-control" name="form_film">
+  <%= options_for_select(Film.all.collect {|f| [ f.name, f.name ] }) %>
+</select>
+<div class="row">
+  <% @films.each do |film| %>
+    <div class="col-lg-4">
+      <p> <%= film %></p>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Film</th>
+            <th>Time</th>
+            <th>Auditorium</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @orders.where(film_name: film ).each do |order| %>
+            <tr>
+              <td><%= order.first_name + " " + order.last_name %></td>
+              <td><%= order.email %></td>
+              <td><%= order.film_name %></td>
+              <td><%= order.showing_time %></td>
+              <td><%= order.auditorium_id %></td>
+            </tr>
+          <%end%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>

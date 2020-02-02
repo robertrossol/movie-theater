@@ -9,7 +9,7 @@
   <p>Auditorium/Film/Capacity</p>
   <div class="form-group">
     <select class="form-control" name="form_auditorium">
-      <%= options_for_select(Auditorium.all.collect {|f| [ "Auditorium #{f.id}: #{f.film_playing} -- #{f.capacity} seats", f.id ] }) %>
+      <%= options_for_select(Auditorium.all.collect {|f| [ "Auditorium #{f.id}: #{f.film_playing} -- #{f.capacity} seats", f.id ] }, {selected: @auditorium.id}) %>
     </select>
   </div>
   <input type ="submit" value="Create Showing">

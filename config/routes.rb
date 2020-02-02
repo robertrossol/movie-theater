@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   get "/showings/new" => "showings#new"
   post "/showings" => "showings#create"
+  get "auditoriums/:auditorium_id/showing/new" => "showings#new"
   delete "/showings/:id" => "showings#destroy"
 
   get "/orders" => "orders#index"
@@ -23,8 +24,11 @@ Rails.application.routes.draw do
   get "showings/:showing_id/orders/new" => "orders#new"
   # delete "/orders/:id" => "orders#destroy"
 
+  resources :auditoriums do
+    resources :showing
+  end
+
   resources :showings do
     resources :orders
-
   end
 end

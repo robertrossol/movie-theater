@@ -14,8 +14,8 @@ showings = [["12:00PM", 1], ["3:00PM", 1], ["6:00PM", 1], ["9:00PM", 1],
             ["12:00PM", 4], ["3:00PM", 4], ["6:00PM", 4], ["9:00PM", 4],
             ["12:00PM", 5], ["3:00PM", 5], ["6:00PM", 5], ["9:00PM", 5],
             ["12:00PM", 6], ["3:00PM", 6], ["6:00PM", 6], ["9:00PM", 6]]
-orders = [["Rob", "Rossol", "shyguyrbr1@gmail.com", "1234 5678 9101 1121", "12/23", 1, "Jaws", "12:00PM", 1],
-          ["Ashley", "Rossol", "arwerth@gmail.com", "1234 5678 9101 1121", "12/24", 6, "LOTR", "3:00PM", 2]]
+orders = [["Rob", "Rossol", "shyguyrbr1@gmail.com", "1234 5678 9101 1121", "12/23", 1, "Jaws", "12:00 PM", 1],
+          ["Ashley", "Rossol", "arwerth@gmail.com", "1234 5678 9101 1121", "12/24", 6, "LOTR", "3:00 PM", 2]]
 films.each do |name|
   Film.create(name: name)
 end

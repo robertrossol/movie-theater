@@ -18,8 +18,7 @@
   <div class="form-group">
     <input class="form_control" type="hidden" name="form_showing", value="<%= params[:showing_id] %>">
   </div>
-  <% showing = Showing.find_by(id: params[:showing_id]) %>
-  <p>Showing Details: <%= "#{showing.film.name} at #{showing.time.strftime("%I:%M %p")} in Auditorium #{showing.auditorium_id}"%></p>
+  <p>Showing Details: <%= "#{@showing.film.name} at #{@showing.time.strftime("%I:%M %p")} in Auditorium #{@showing.auditorium_id}"%></p>
   <input type ="submit" value="Purchase">
 <% end %>
 
