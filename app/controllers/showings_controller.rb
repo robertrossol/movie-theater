@@ -18,6 +18,7 @@ class ShowingsController < ApplicationController
     if @showing.save
       redirect_to "/auditoriums/#{@showing.auditorium_id}"
     else
+      @auditorium = Auditorium.find_by(id: params[:form_auditorium]) || Auditorium.first
       render 'new.html.erb'
     end
   end
