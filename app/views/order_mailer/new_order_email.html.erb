@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<p>This is your order confirmation!</p>
+<p>
+  Order details<br>
+  --------------------------
+</p>
+<p>Name: <%= @order.full_name %></p>
+<p>Email: <%= @order.email %></p>
+<p>Film: <%= @order.film_name %></p>
+<p>Showing TIme: <%= @order.showing_time %></p>
+<p>Auditorium #<%= @order.auditorium_id %></p>
+</body>
+</html>
