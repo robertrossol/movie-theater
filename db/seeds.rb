@@ -6,16 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-films = ["Jaws", "LOTR", "Parasite", "Star Wars"]
-auditoriums = [[20, 1], [30, 2], [40, 3], [50, 4], [100, 2], [75,3]]
+films = ["Jaws", "Lord of the Rings", "Parasite", "Star Wars"]
+auditoriums = [[20, 1], [30, 2], [40, 3], [50, 4], [100, 2], [75, 3]]
 showings = [["12:00PM", 1], ["3:00PM", 1], ["6:00PM", 1], ["9:00PM", 1],
             ["12:00PM", 2], ["3:00PM", 2], ["6:00PM", 2], ["9:00PM", 2],
             ["12:00PM", 3], ["3:00PM", 3], ["6:00PM", 3], ["9:00PM", 3],
             ["12:00PM", 4], ["3:00PM", 4], ["6:00PM", 4], ["9:00PM", 4],
             ["12:00PM", 5], ["3:00PM", 5], ["6:00PM", 5], ["9:00PM", 5],
             ["12:00PM", 6], ["3:00PM", 6], ["6:00PM", 6], ["9:00PM", 6]]
-orders = [["Rob", "Rossol", "shyguyrbr1@gmail.com", "1234 5678 9101 1121", "12/23", 1, "Jaws", "12:00 PM", 1],
-          ["Ashley", "Rossol", "arwerth@gmail.com", "1234 5678 9101 1121", "12/24", 6, "LOTR", "3:00 PM", 2]]
+orders = [["Rob", "Rossol", "shyguyrbr1@gmail.com", "5105105105105100", "12/23", 1, "Jaws", "12:00 PM", 1],
+          ["Ashley", "Rossol", "arwerth@gmail.com", "5105105105105100", "12/24", 6, "Lord of the Rings", "3:00 PM", 2]]
 films.each do |name|
   Film.create(name: name)
 end
