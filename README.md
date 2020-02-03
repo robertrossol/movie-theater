@@ -1,24 +1,10 @@
 # README
+- I started off by conceptualizing the basic structure for the app, starting with models and data relationships.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- I established that I'd need Auditoriums, films, showings, and eventually orders.
 
-Things you may want to cover:
+- I initially thought that orders could pull all the film and theater info through the showing_id but then later realized that although this worked, the orders themselves should represnt a timeless record that couldn't be altered if any of it's associated objects attributes changes (i.e. auditorium changed its film), so I had to alter the order model.
 
-* Ruby version
+- Although I initially built out simple versions of many of the show and edit pages, I eventually created a "Manage" page to allow the owner to effectively and easily see the state of the theater and make any edits, deletions or additions.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- I made efforts to increase the ease and accuracy of adding or editing by passing id parameters through, so that adding a new showing, for example, would default to the auditorium you were clicking through from.
