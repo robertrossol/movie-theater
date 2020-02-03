@@ -16,7 +16,7 @@
     Expiration Date: <input class="form_control" type="text" name="form_cc_exp">
   </div>
   <div class="form-group">
-    <input class="form_control" type="hidden" name="form_showing", value="<%= params[:showing_id] %>">
+    <input class="form_control" type="hidden" name="form_showing", value="<%= params[:showing_id] || @order.showing.id %>">
   </div>
   <p>Showing Details: <%= "#{@showing.film.name} at #{@showing.time.strftime("%I:%M %p")} in Auditorium #{@showing.auditorium_id}"%></p>
   <input type ="submit" value="Purchase">

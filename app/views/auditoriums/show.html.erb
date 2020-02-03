@@ -5,7 +5,7 @@
 <p>Showings: <p>
   <% @auditorium.showings.each do |showing| %>
   <p><%= showing.time.strftime("%I:%M:%S %p") if showing.time%> <p>
-  <p><%= showing.status %> <p>
+  <p><%= showing.status %> seats left <p>
   <%= link_to "Purchase Ticket", new_showing_order_url(:showing_id => showing.id) if showing.available?  %>
 <% end %>
 

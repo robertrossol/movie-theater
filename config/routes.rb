@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "/" => "auditoriums#index"
+  get "/" => "pages#home"
   get "/auditoriums" => "auditoriums#index"
   get "/auditoriums/new" => "auditoriums#new"
   post "auditoriums" => "auditoriums#create"

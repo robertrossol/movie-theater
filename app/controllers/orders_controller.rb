@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   def index
     @orders = Order.all
-    @films = @orders.pluck(:film_name).uniq
+    films_with_orders = @orders.pluck(:film_name).uniq
+    @films = Film.all.select { |film| film.name.in? films_with_orders }
     render 'index.html.erb'
   end
 
@@ -19,16 +20,18 @@ class OrdersController < ApplicationController
       email: params[:form_email],
       cc: params[:form_cc],
       cc_exp: params[:form_cc_exp],
-      showing_id: params[:form_showing],
+      showing_id: params[:form_showing] || showing.id,
       film_name: showing.film.name,
       showing_time: showing.time.strftime("%I:%M %p"),
       auditorium_id: showing.auditorium_id
     )
     if @order.save
       OrderMailer.with(order: @order).new_order_email.deliver_now
-      flash[:success] = "Thank you for your order! We'll get contact you soon!"
-      redirect_to "/auditoriums/#{@order.auditorium.id}"
+      flash[:success] = "Thank you for your order! We'll contact you soon!"
+      # redirect_to "/auditoriums/#{@order.auditorium.id}"
+      redirect_to "/"
     else
+      @showing = Showing.find_by(id: @order.showing_id)
       render 'new.html.erb'
     end
   end
