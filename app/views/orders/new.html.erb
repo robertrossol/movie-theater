@@ -21,7 +21,7 @@
   <p>Showing Details: <%= "#{@showing.film.name} at #{@showing.time.strftime("%I:%M %p")} in Auditorium #{@showing.auditorium_id}"%></p>
   <input type ="submit" value="Purchase">
 <% end %>
-<h4><a href="/">Back to Home Page</a></h4>
+<p><a href="/">Back to Home Page</a></p>
 
 <% if @order.errors.any? %>
   <div id="error_explanation">
