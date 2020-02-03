@@ -16,7 +16,7 @@ class ShowingsController < ApplicationController
       auditorium_id: params[:form_auditorium]
     )
     if @showing.save
-      redirect_to "/auditoriums/#{@showing.auditorium_id}"
+      redirect_to "/manage#auditoriums"
     else
       @auditorium = Auditorium.find_by(id: params[:form_auditorium]) || Auditorium.first
       render 'new.html.erb'
@@ -26,6 +26,6 @@ class ShowingsController < ApplicationController
   def destroy
     @showing = Showing.find_by(id: params[:id])
     @showing.destroy
-    redirect_to "/showings"
+    redirect_to "/manage#auditoriums"
   end
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "/" => "pages#home"
+  get "/manage" => "pages#manage"
   get "/auditoriums" => "auditoriums#index"
   get "/auditoriums/new" => "auditoriums#new"
   post "auditoriums" => "auditoriums#create"

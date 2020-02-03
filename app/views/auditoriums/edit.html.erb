@@ -3,9 +3,12 @@
     Capacity: <input type='text' class="form-control" value="<%= @auditorium.capacity %>" name="form_capacity">
   </div>
   <div class="form-group">
+    Film:
     <select class="form-control" name="form_film">
-      <%= options_for_select(Film.all.collect {|f| [ f.name, f.id ] }, { include_blank: true }) %>
+      <%= options_for_select(Film.all.collect {|f| [ f.name, f.id ] }, {selected: @auditorium.film_id}) %>
     </select>
   </div>
   <input type ="submit" value="Update Auditorium info">
 <% end %>
+<h4><a href="/manage">Manage Home</a></h4>
+

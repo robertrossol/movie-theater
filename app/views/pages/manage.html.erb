@@ -1,0 +1,182 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">MANAGER PROFILE</a>
+    <a class="navbar-brand js-scroll-trigger" href="/">Return to Main Page</a>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#films">Films</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#auditoriums">Auditoriums</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#links">Links</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Header -->
+<header class="masthead">
+  <div class="container d-flex h-100 align-items-center">
+    <div class="mx-auto text-center">
+      <h1 class="mx-auto my-0 text-uppercase">Manager Profile</h1>
+      <h2 class="text-white-50 mx-auto mt-2 mb-5">Add, Edit, or Delete Films, Auditoriums, and Showings</h2>
+      <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
+    </div>
+  </div>
+</header>
+
+<!-- Films Section -->
+<section id="films" class="about-section text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h1 class="text-white mb-4"><a href="/films">Films Showing</a></h1>
+      </div>
+    </div>
+    <div class="row">
+      <% @films.each do |film| %>
+        <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card-body text-center">
+              <hr class="my-4">
+              <h2 class="text-white text-uppercase m-0"><%= film.name %></h2>
+              <p class="text-white">
+                <%= link_to "Delete Film", "/films/#{film.id}", method: :delete %>
+              </p>
+              <hr class="my-4">
+            </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="card-body text-center">
+      <hr class="my-4">
+        <h3><%= link_to "Add a Film", "/films/new", method: :get %></h3>
+      <hr class="my-4">
+    </div>
+    </div>
+</section>
+
+<!-- Auditorium Section -->
+<section id="auditoriums" class="projects-section bg-light">
+  <div class="card-body text-center">
+    <hr class="my-4">
+    <h3><%= link_to "Add an Auditorium", "/auditoriums/new", method: :get %></h3>
+    <hr class="my-4">
+  </div>
+  <div class="container">
+    <!-- Right Auditoriums -->
+    <% @auditoriums.each do |auditorium| %>
+      <% if auditorium.id%2 == 1 %>
+        <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+          <div class="col-lg-6">
+            <img class="img-fluid h-100" src=" http://blackrockdigital.github.io/startbootstrap-grayscale/img/demo-image-01.jpg" alt="">
+          </div>
+          <div class="col-lg-6">
+            <div class="bg-black text-center h-100 project">
+              <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                  <h2 class="text-white">Auditorium <%= auditorium.id %> -- <%= auditorium.capacity %> Seats</h2>
+                  <h4><a href="/auditoriums/<%= auditorium.id %>/edit">Edit Auditorium</a></h4>
+                  <%= link_to "Delete Auditorium", "/auditoriums/#{auditorium.id}", method: :delete %>
+                  <h4 class="text-white"><%= auditorium.film_playing %></h4>
+                  <% auditorium.showings.order(:time).each do |showing| %>
+                    <p class="mb-0 text-white-50">
+                      <%= link_to "#{showing.time.strftime("%I:%M %p")}", new_showing_order_url(:showing_id => showing.id) if showing.available?%>
+                      <%= showing.status%>
+                      <%= link_to "Delete Showing", "/showings/#{showing.id}", method: :delete %>
+                    </p>
+                  <% end %>
+                  <h4><%= link_to "Add a Showing", new_auditorium_showing_url(:auditorium_id => auditorium.id ) %></h4>
+                  <hr class="d-none d-lg-block mb-0 ml-0">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <!-- Left Auditoriums -->
+        <div class="row justify-content-center no-gutters">
+          <div class="col-lg-6">
+            <img class="img-fluid h-100" src=" http://blackrockdigital.github.io/startbootstrap-grayscale/img/demo-image-02.jpg" alt="">
+          </div>
+          <div class="col-lg-6 order-lg-first">
+            <div class="bg-black text-center h-100 project">
+              <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-right">
+                  <h2 class="text-white">Auditorium <%= auditorium.id %> -- <%= auditorium.capacity %> Seats</h2>
+                  <h4><a href="/auditoriums/<%= auditorium.id %>/edit">Edit Auditorium</a></h4>
+                  <%= link_to "Delete Auditorium", "/auditoriums/#{auditorium.id}", method: :delete, data: { confirm: 'This will also delete all showings for the auditorium. Press Yes to confirm.'}%>
+                  <h4 class="text-white"><%= auditorium.film_playing %></h4>
+                  <% auditorium.showings.order(:time).each do |showing| %>
+                    <p class="mb-0 text-white-50">
+                      <%= link_to "#{showing.time.strftime("%I:%M %p")}", new_showing_order_url(:showing_id => showing.id) if showing.available?%>
+                      <%= showing.status%>
+                      <%= link_to "Delete Showing", "/showings/#{showing.id}", method: :delete, data: { confirm: 'Are you sure?' }%>
+                    </p>
+                  <% end %>
+                  <h4><%= link_to "Add a Showing", new_auditorium_showing_url(:auditorium_id => auditorium.id ) %></h4>
+                  <hr class="d-none d-lg-block mb-0 mr-0">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</section>
+
+<!-- Links Section -->
+<section id="links" class="contact-section bg-black">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <hr class="my-4">
+            <h2 class="text-uppercase m-0"><a href="/orders">Orders</a></h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <hr class="my-4">
+            <h2 class="text-uppercase m-0">Email</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-3 mb-md-0">
+        <div class="card py-4 h-100">
+          <div class="card-body text-center">
+            <hr class="my-4">
+            <h2 class="text-uppercase m-0">Phone</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="social d-flex justify-content-center">
+      <a href="#" class="mx-2">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#" class="mx-2">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#" class="mx-2">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+  </div>
+</section>

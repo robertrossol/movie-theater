@@ -9,7 +9,7 @@ class Showing < ApplicationRecord
 
   def status
     if available?
-      tickets_remaining
+      tickets_remaining.to_s + " Seats Left"
     else
       "Sold Out"
     end

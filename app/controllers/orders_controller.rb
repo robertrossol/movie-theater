@@ -28,7 +28,6 @@ class OrdersController < ApplicationController
     if @order.save
       OrderMailer.with(order: @order).new_order_email.deliver_now
       flash[:success] = "Thank you for your order! We'll contact you soon!"
-      # redirect_to "/auditoriums/#{@order.auditorium.id}"
       redirect_to "/"
     else
       @showing = Showing.find_by(id: @order.showing_id)

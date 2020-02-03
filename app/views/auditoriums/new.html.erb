@@ -3,6 +3,7 @@
   <div class="form-group">
     Capacity: <input class="form_control" type="text" name="form_capacity">
   </div>
+  Film:
   <div class="form-group">
     <select class="form-control" name="form_film">
       <%= options_for_select(Film.all.collect {|f| [ f.name, f.id ] }, { include_blank: true }) %>
@@ -10,6 +11,7 @@
   </div>
   <input type ="submit" value="Create Auditorium">
 <% end %>
+<h4><a href="/manage">Manage Home</a></h4>
 
 <% if @auditorium.errors.any? %>
   <div id="error_explanation">

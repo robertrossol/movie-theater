@@ -15,7 +15,7 @@ class FilmsController < ApplicationController
       name: params[:form_name]
     )
     if @film.save
-      redirect_to "/films"
+      redirect_to "/manage#films"
     else
       render 'new.html.erb'
     end
@@ -23,7 +23,11 @@ class FilmsController < ApplicationController
 
   def destroy
     @film = Film.find_by(id: params[:id])
-    @film.destroy
-    redirect_to "/films"
+    if @film.auditoriums.empty?
+      @film.destroy
+    else
+      flash[:warning] = "Please remove film from auditoriums first!"
+    end
+    redirect_to "/manage"
   end
 end

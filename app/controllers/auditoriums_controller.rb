@@ -22,7 +22,7 @@ class AuditoriumsController < ApplicationController
       film_id: params[:form_film]
     )
     if @auditorium.save
-      redirect_to "/auditoriums/#{@auditorium.id}"
+      redirect_to "/manage#auditoriums"
     else
       render "new.html.erb"
     end
@@ -40,7 +40,7 @@ class AuditoriumsController < ApplicationController
       film_id: params[:form_film]
     )
       flash[:success] = "Auditorium Updated"
-      redirect_to "/auditoriums/#{@auditorium.id}"
+      redirect_to "/manage#auditoriums"
     else
       render 'edit.html.erb'
     end
@@ -49,6 +49,6 @@ class AuditoriumsController < ApplicationController
   def destroy
     @auditorium = Auditorium.find_by(id: params[:id])
     @auditorium.destroy
-    redirect_to "/auditoriums/"
+    redirect_to "/manage#auditoriums"
   end
 end

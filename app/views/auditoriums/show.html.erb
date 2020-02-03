@@ -9,8 +9,4 @@
   <%= link_to "Purchase Ticket", new_showing_order_url(:showing_id => showing.id) if showing.available?  %>
 <% end %>
 
-<h4><a href="/auditoriums/<%=@auditorium.id%>/edit">Edit Auditorium</a></h4>
-<%= link_to "Delete Auditorium", "/auditoriums/#{@auditorium.id}", method: :delete %>
-
-<h4><%= link_to "Add a Showing", new_auditorium_showing_url(:auditorium_id => @auditorium.id ) %></h4>
-<h4><a href="/auditoriums">Home Page</a></h4>
+<h4><a href="/">Home Page</a></h4>
